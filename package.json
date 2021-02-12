@@ -1,0 +1,23 @@
+{
+  "name": "project-web-pro",
+  "version": "1.0.0",
+  "description": "Project web programming for second year!",
+  "main": "index.js",
+  "scripts": {
+    "build-css" :  "tailwind build src/style.css -o public/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaphonW/project-web-pro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaphonW/project-web-pro/issues"
+  },
+  "homepage": "https://github.com/PaphonW/project-web-pro#readme",
+  "dependencies": {
+    "tailwindcss": "^2.0.3"
+  }
+}
