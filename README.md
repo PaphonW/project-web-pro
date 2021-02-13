@@ -1,2 +1,3 @@
 # project-web-pro
-Project web programming for second year!
+This branch is for developing phase 1 of project.
+- palm11695
