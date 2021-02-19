@@ -9,28 +9,31 @@
 <body class="w-full">
     <header>
       <!--nav-->
-      <nav class="w-full h-12 border justify-between flex items-center fixed top-0 bg-white shadow">
-          <div class="flex divide-x items-center">
-              <a class="text-center px-8 text-xl" href="index.html">
-                <strong>Wong IT</strong>
-              </a>
-              <div class="h-12 hover:bg-gray-100 flex items-center">
-                <a href="search.html" class="text-sm px-8 text-center inline-block align-middle">Find Product</a>
-              </div>
-              <div class="h-12 hover:bg-gray-100 flex items-center">
-                <a href="about.html" class="text-sm px-8 text-center inline-block align-middle">About us</a>
-              </div>
+      <nav class="w-full flex items-center justify-between flex-wrap bg-teal p-6 fixed top-0 bg-white">
+        <div class="flex items-center flex-no-shrink text-black mr-6">
+          <a href="index.html" class="font-semibold text-xl tracking-tight">Wong IT</a>
+        </div>
+        <div class="block lg:hidden">
+          <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white" onclick="menu()">
+            <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+        </div>
+        <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden"  id="bur">
+          <div class="text-sm lg:flex-grow">
+            <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+              Find Product
+            </a>
+            <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+              About
+            </a>
           </div>
-
-          <div class="flex items-center">
-            <div class="h-12 flex items-center">
-              <a href="login.html" class="text-sm px-8 text-center inline-block align-middle">Sign in</a>
-            </div>
-              
-              <div class="mr-8 flex items-center">
-                  <a href="register.html" class="text-sm text-center p-1 rounded-md border hover:bg-gray-100">Sign up</a>
-              </div>
+          <div>
+            <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 mr-4">Sign in</a>
           </div>
+          <div>
+            <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 lg:bg-blue-100 lg:py-2 lg:px-4">Sign up</a>
+          </div>
+        </div>
       </nav>
       <!--nav-->
     </header>
@@ -60,6 +63,16 @@
       <p class="copyright">Wong IT © 2021</p>
     </footer>
     
+    <script>
+      function menu() {
+        var x = document.getElementById('bur');
+        if(x.style.display === 'none'){
+          x.style.display = 'block'
+        }else{
+          x.style.display = 'none'
+        }
+      }
+    </script>
     
 </body>
 </html>
