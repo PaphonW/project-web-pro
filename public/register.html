@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="style.css">
     <title>Register</title>
 </head>
-<body class="w-full bg-gray-300">
+<body class="w-screen bg-white md:bg-gray-300">
     
     <header>
         <!--nav-->
-        <nav class="w-full flex items-center justify-between flex-wrap bg-teal p-6 fixed top-0 bg-white">
+        <nav class="w-screen flex items-center justify-between flex-wrap bg-teal p-6 md:fixed top-0 bg-white">
             <div class="flex items-center flex-no-shrink text-black mr-6">
               <a href="index.html" class="font-semibold text-xl tracking-tight">Wong IT</a>
             </div>
@@ -19,55 +19,58 @@
                 <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
               </button>
             </div>
-            <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden"  id="bur">
+            <div class="w-screen lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden"  id="bur">
               <div class="text-sm lg:flex-grow">
-                <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+                <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
                   Find Product
                 </a>
-                <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+                <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
                   About
                 </a>
+              </div>
+              <div>
+                <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Sign in</a>
               </div>     
             </div>
           </nav>
         <!--nav-->
     </header>
 
-    <main class="container-fluid w-full h-full flex items-center justify-center">
+    <main class="container-fluid w-screen h-screen flex items-center justify-center">
         <!--Register form-->
-        <form class="w-100 h-min bg-white rounded-xl shadow-lg p-12">
+        <form class="w-screen md:w-max p-10 h-min bg-white rounded-xl md:shadow-lg md:p-12" id="innerForm">
             <div class="container grid grid-cols-1 md:grid-cols-2">
                 <div>
                     <h1 class="pb-3 text-xl font-bold">Register</h1>
-                    <label class="pt-3 text-sm">Username</label>
+                    <label class="pt-3 text-sm">Username <span class="text-red-500">*</span></label>
                     <div class="pb-4 pt-2">
-                        <input class="w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="username">
+                        <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="username" required>
                     </div>
-                    <label class="pt-3 text-sm">Password</label>
+                    <label class="pt-3 text-sm">Password <span class="text-red-500">*</span></label>
                     <div class="pb-4 pt-2">
-                        <input class="w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="password" id="password">
+                        <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="password" id="password" required>
                     </div>
-                    <label class="pt-3 text-sm">E-mail</label>
+                    <label class="pt-3 text-sm">E-mail <span class="text-red-500">*</span></label>
                     <div class="pb-4 pt-2">
-                        <input class="w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="email" id="email">
+                        <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="email" id="email" required>
                     </div>
-                    <label class="pt-3 text-sm">Phone number</label>
+                    <label class="pt-3 text-sm">Phone number <span class="text-red-500">*</span></label>
                     <div class="pb-4 pt-2">
-                        <input class="w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="tel" id="telNumber">
+                        <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="tel" id="telNumber" required>
                     </div>
                 </div>
                 <div class="md:ml-6 md:mt-10">
                     <label class="pt-3 text-sm">Address</label>
                     <div class="pb-4 pt-2">
-                        <textarea class="w-96 px-3 py-2 bg-gray-200 text-gray-700 border rounded" type="text" rows="4"></textarea>
+                        <textarea class="min-w-full md:w-96 px-3 py-2 bg-gray-200 text-gray-700 border rounded" type="text" rows="4"></textarea>
                     </div>
                     <label class="pt-3 text-sm">City</label>
                     <div class="pb-4 pt-2">
-                        <input class="w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="password">
+                        <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="password">
                     </div>
                     <label class="pt-3 text-sm">Post code</label>
                     <div class="pb-4 pt-2">
-                        <input class="w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="password">
+                        <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="password">
                     </div>
                 </div>
             </div>
@@ -84,16 +87,23 @@
 
            
     </main>
+    
+    <footer class="w-screen h-12 flex justify-center bg-gray-200 items-center md:fixed bottom-0">
+      <p class="copyright">Wong IT © 2021</p>
+    </footer>
 
-    <script>
-        function menu() {
-          var x = document.getElementById('bur');
-          if(x.style.display === 'none'){
-            x.style.display = 'block'
-          }else{
-            x.style.display = 'none'
-          }
-        }
-      </script>
+    
 </body>
+<script>
+  function menu() {
+    var x = document.getElementById('bur');
+    if(x.style.display === 'none'){
+      x.style.display = 'block'
+    }else{
+      x.style.display = 'none'
+    }
+  }
+
+  
+</script>
 </html>

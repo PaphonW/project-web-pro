@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>About us - Shop</title>
+    <title>About us</title>
 </head>
 <body>
   <header>
@@ -18,12 +18,12 @@
           <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
         </button>
       </div>
-      <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden"  id="bur">
+      <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden" id="bur">
         <div class="text-sm lg:flex-grow">
-          <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+          <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
             Find Product
           </a>
-          <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+          <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
             About
           </a>
         </div>
@@ -31,11 +31,11 @@
           <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 mr-4">Sign in</a>
         </div>
         <div>
-          <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 lg:bg-blue-100 lg:py-2 lg:px-4">Sign up</a>
+          <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
         </div>
       </div>
     </nav>
-    <!--nav-->
+    
   </header>
 
     <main>
@@ -43,6 +43,7 @@
             <h1 class="font-bold pt-20">About Us</h1>
         </div>
 
+        <!--Members' information-->
         <div class="flex justify-center h-min">
             <div class="grid grid-cols-1 md:grid-cols-2 w-full">
 
@@ -75,16 +76,17 @@
       <p class="copyright">Wong IT © 2021</p>
     </footer>
 
-    <script>
-      function menu() {
-        var x = document.getElementById('bur');
-        if(x.style.display === 'none'){
-          x.style.display = 'block'
-        }else{
-          x.style.display = 'none'
-        }
-      }
-    </script>
+    
 
 </body>
+<script>
+  function menu() {
+    var x = document.getElementById('bur');
+    if(x.style.display === 'none'){
+      x.style.display = 'block'
+    }else{
+      x.style.display = 'none'
+    }
+  }
+</script>
 </html>

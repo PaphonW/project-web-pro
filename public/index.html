@@ -4,8 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="func.js"></script>
-    <title>Home - Shop</title>
+    <title>Home</title>
 </head>
 <body class="w-full">
     <header>
@@ -21,46 +20,47 @@
         </div>
         <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden"  id="bur">
           <div class="text-sm lg:flex-grow">
-            <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+            <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
               Find Product
             </a>
-            <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+            <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
               About
             </a>
           </div>
           <div>
-            <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 mr-4">Sign in</a>
+            <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Sign in</a>
           </div>
           <div>
-            <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 lg:bg-blue-100 lg:py-2 lg:px-4">Sign up</a>
+            <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
           </div>
         </div>
       </nav>
-      <!--nav-->
+      
     </header>
     
 
-    <main>
-
-      <div class="w-full h-96 flex justify-center items-center bg-no-repeat bg-cover " style="background-image: url('assets/img/banner.jpg');">
-        <div class="w-full h-full bg-white bg-opacity-20 flex items-center justify-center">
-          <h1 class="text-white text-5xl text-center font-mono">
+    <main class="shadow-inner">
+      <!--Banner of the main page-->
+      <section class="w-full h-96 flex justify-center items-center bg-no-repeat bg-cover " style="background-image: url('assets/img/banner.jpg');">
+        <div class="w-full h-screen bg-white bg-opacity-20 flex items-center justify-center">
+          <h1 class="text-white text-2xl lg:text-5xl text-center font-mono">
             Wong IT: The Ultimate Computer Store
           </h1>
         </div>
-      </div>
+      </section>
         
-        <!--rec-->
-        <div class="w-full pl-10 py-4">
+        <!--recommend message-->
+        <section class="w-full pl-10 py-4">
             <h1 class="font-bold">Recommendation</h1>
-        </div>
-        <!--rec-->
+        </section>
         
-        <!--rec items-->
-        <div class="w-full flex justify-center">
+        
+        <!--recommend items-->
+        <section class="w-full flex justify-center">
 
           <div class="container grid grid-cols-1 md:grid-cols-4 w-full">
 
+            <!--item-->
             <div class="container-md flex justify-center">
               <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
                 <img class="w-full" src="assets/img/product/HP15.jpg" alt="Sunset in the mountains">
@@ -76,6 +76,7 @@
               </div>
             </div>
 
+            <!--item-->
             <div class="container-md flex justify-center">
               <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
                 <img class="w-full" src="assets/img/product/MSI.jpg" alt="GE66">
@@ -91,6 +92,7 @@
               </div>
             </div>
 
+            <!--item-->
             <div class="container-md flex justify-center">
               <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
                 <img class="w-full" src="assets/img/product/Legion 7.jpg" alt="Lenovo">
@@ -106,6 +108,7 @@
               </div>
             </div>
 
+            <!--item-->
             <div class="container-md flex justify-center">
               <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
                 <img class="w-full" src="assets/img/product/G15.jpg" alt="G15">
@@ -121,6 +124,7 @@
               </div>
             </div>
 
+            <!--item-->
             <div class="container-md flex justify-center">
               <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
                 <img class="w-full" src="assets/img/product/G14.jpg" alt="G14">
@@ -136,6 +140,7 @@
               </div>
             </div>
 
+            <!--item-->
             <div class="container-md flex justify-center">
               <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
                 <img class="w-full" src="assets/img/product/alienware.jpg" alt="alien">
@@ -153,22 +158,22 @@
               
 
           </div>
-        </div>         
+        </section>         
     </main>
 
-    <footer class="w-full h-12 flex justify-center bg-gray-200 items-center shadow-inner">
+    <footer class="w-full h-12 flex justify-center bg-gray-200 items-center">
       <p class="copyright">Wong IT © 2021</p>
     </footer>
 
-    <script>
-      function menu() {
-        var x = document.getElementById('bur');
-        if(x.style.display === 'none'){
-          x.style.display = 'block'
-        }else{
-          x.style.display = 'none'
-        }
-      }
-    </script>
 </body>
+<script>
+  function menu() {
+    var x = document.getElementById('bur');
+    if(x.style.display === 'none'){
+      x.style.display = 'block'
+    }else{
+      x.style.display = 'none'
+    }
+  }
+</script>
 </html>
