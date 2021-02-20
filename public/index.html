@@ -6,119 +6,174 @@
     <link rel="stylesheet" href="style.css">
     <title>Home</title>
 </head>
-<body class="w-screen">
-    <nav class="w-full h-12 border justify-between flex items-center">
-        <div class="flex divide-x items-center">
-            <img src="assets/img/logo.png" class="h-4 px-8">
-            <a href="#" class="text-sm px-8 text-center">Find Product</a>
-            <a href="#" class="text-sm pl-8 text-center">About us</a>
+<body class="w-full">
+    <header>
+      <!--nav-->
+      <nav class="w-full flex items-center justify-between flex-wrap bg-teal p-6 fixed top-0 bg-white">
+        <div class="flex items-center flex-no-shrink text-black mr-6">
+          <a href="index.html" class="font-semibold text-xl tracking-tight">Wong IT</a>
         </div>
+        <div class="block lg:hidden">
+          <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white" onclick="menu()">
+            <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+        </div>
+        <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden"  id="bur">
+          <div class="text-sm lg:flex-grow">
+            <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+              Find Product
+            </a>
+            <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+              About
+            </a>
+          </div>
+          <div>
+            <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Sign in</a>
+          </div>
+          <div>
+            <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
+          </div>
+        </div>
+      </nav>
+      
+    </header>
+    
 
-        <div class="flex divide-x">
-            <a href="#" class="text-sm pr-8 text-center">Sign in</a>  
-            <div class="mr-8 pl-8">
-                <a href="#" class="text-sm rounded-md border text-center">Sign up</a>
-            </div>
+    <main class="shadow-inner">
+      <!--Banner of the main page-->
+      <section class="w-full h-96 flex justify-center items-center bg-no-repeat bg-cover " style="background-image: url('assets/img/banner.jpg');">
+        <div class="w-full h-screen bg-white bg-opacity-20 flex items-center justify-center">
+          <h1 class="text-white text-2xl lg:text-5xl text-center font-mono">
+            Wong IT: The Ultimate Computer Store
+          </h1>
         </div>
-    </nav>
-
-    <div>
-        <div class="w-full h-96 bg-gray-300 flex justify-center items-center">
-            <div class="w-3/5 h-3/5 rounded-2xl bg-white shadow-lg">
-    
-                <div class="w-full f-full block items-center justify-center py-12">
-    
-                    <h1 class="text-center font-bold p-1"> Welocme to our website!</h1>
+      </section>
         
-                    <p class="text-center p-1 font-light"> for something?</p>
-        
-                    <div class="flex justify-center p-1"><input class="w-4/5 justify-center border rounded-md bg-gray-200 text-center" type="text" id="srch" name="srch" placeholder="Search here!"></div>
-        
-                    <div class="flex justify-center p-1"><input class="w-10" type="image" src="assets/img/srhr.svg"></div>
-                        
-                </div>
-            </div>
-        </div>
-    
-        <div class="w-full pl-10 py-4">
+        <!--recommend message-->
+        <section class="w-full pl-10 py-4">
             <h1 class="font-bold">Recommendation</h1>
-        </div>
+        </section>
         
-        <div class="grid grid-flow-col auto-cols-4 px-20">
-            <div>
-                <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                    <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
-                    <div class="px-6 py-4">
-                      <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                      <p class="text-grey-darker text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="px-6 py-4">
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#photography</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#travel</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">#winter</span>
-                    </div>
-                  </div>
-            </div>
-
-            <div>
-                <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                    <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
-                    <div class="px-6 py-4">
-                      <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                      <p class="text-grey-darker text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="px-6 py-4">
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#photography</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#travel</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">#winter</span>
-                    </div>
-                  </div>
-            </div>
-
-            <div>
-                <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                    <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
-                    <div class="px-6 py-4">
-                      <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                      <p class="text-grey-darker text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="px-6 py-4">
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#photography</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#travel</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">#winter</span>
-                    </div>
-                  </div>
-            </div>
-
-            <div>
-                <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                    <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
-                    <div class="px-6 py-4">
-                      <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                      <p class="text-grey-darker text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                    <div class="px-6 py-4">
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#photography</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#travel</span>
-                      <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">#winter</span>
-                    </div>
-                  </div>
-            </div>
-
-            
-
-            
-
         
-        </div>
-    </div>
+        <!--recommend items-->
+        <section class="w-full flex justify-center">
+
+          <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
+
+            <!--item-->
+            <div class="container-md flex justify-center">
+              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
+                <img class="w-full" src="assets/img/product/HP15.jpg" alt="Sunset in the mountains">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">OMEN Laptop-15</div>
+                  <p class="text-grey-darker text-base">
+                    The powerful gaming beast lets you experience high-grade graphics and processing power that meets your gaming and multitasking needs. | With AMD Ryzen7 4800H Processor up to 8 cores and 16 threads
+                  </p>
+                </div>
+                <div class="px-6 py-4">
+                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,101.00$/pcs</span>
+                </div>
+              </div>
+            </div>
+
+            <!--item-->
+            <div class="container-md flex justify-center">
+              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
+                <img class="w-full" src="assets/img/product/MSI.jpg" alt="GE66">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">MSI GE66 Raider</div>
+                  <p class="text-grey-darker text-base">
+                    GE66 Raider is the cross between aesthetics and performance, the keys to a solid laptop. The exterior of the GE66 features an oblique angle which unfolds its crafted sharp image.
+                  </p>
+                </div>
+                <div class="px-6 py-4">
+                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>2,799.00$/pcs</span>
+                </div>
+              </div>
+            </div>
+
+            <!--item-->
+            <div class="container-md flex justify-center">
+              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
+                <img class="w-full" src="assets/img/product/Legion 7.jpg" alt="Lenovo">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">Lenovo Legion 7i</div>
+                  <p class="text-grey-darker text-base">
+                    Unlimited access to over 100 high-quality PC games on Windows 10 and the GeForce® RTX 2080 SUPER™ with Max Q Design is powered by the award-winning NVIDIA Turing™ architecture with more cores, higher clocks, and faster memory for ultimate performance and incredible new levels of realism.
+                  </p>
+                </div>
+                <div class="px-6 py-4">
+                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,399.99/pcs</span>
+                </div>
+              </div>
+            </div>
+
+            <!--item-->
+            <div class="container-md flex justify-center">
+              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
+                <img class="w-full" src="assets/img/product/G15.jpg" alt="G15">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">Asus ROG Strix G15</div>
+                  <p class="text-grey-darker text-base">
+                    The ROG Strix G15 embodies streamlined design, offering a experience for serious gaming and multitasking on Windows 10 Home. Featuring up to the latest 10th Gen Intel® Core™ i7 CPU and up to NVIDIA® GeForce RTX™ 2060 GPU, it offers high-FPS power that takes full advantage of up to a blazing fast 240Hz/3ms display.
+                  </p>
+                </div>
+                <div class="px-6 py-4">
+                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,101.45/pcs</span>
+                </div>
+              </div>
+            </div>
+
+            <!--item-->
+            <div class="container-md flex justify-center">
+              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
+                <img class="w-full" src="assets/img/product/G14.jpg" alt="G14">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">Asus ROG Zephyrus G14</div>
+                  <p class="text-grey-darker text-base">
+                    ROG Zephyrus G14 is the world’s most powerful 14-inch Windows 10 Pro gaming laptop. Outclass the competition with up to an 8-core AMD Ryzen™ 9 4900HS CPU and potent GeForce RTX™ 2060 GPU that speed through everyday multitasking and gaming.
+                  </p>
+                </div>
+                <div class="px-6 py-4">
+                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,199.99/pcs</span>
+                </div>
+              </div>
+            </div>
+
+            <!--item-->
+            <div class="container-md flex justify-center">
+              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
+                <img class="w-full" src="assets/img/product/alienware.jpg" alt="alien">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">DELL Alienware Area-51m R2</div>
+                  <p class="text-grey-darker text-base">
+                    Gaming is better than ever on Windows 10, with games in 4K and DirectX 12. 10th Gen Intel® Core™ i9K desktop processors, support for up to 125W of power, and 10-core desktop CPU, AMD Radeon™ graphics 360Hz FHD display.
+                  </p>
+                </div>
+                <div class="px-6 py-4">
+                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,899.99/pcs</span>
+                </div>
+              </div>
+            </div>
+              
+
+          </div>
+        </section>         
+    </main>
+
+    <footer class="w-full h-12 flex justify-center bg-gray-200 items-center">
+      <p class="copyright">Wong IT © 2021</p>
+    </footer>
+
 </body>
+<script>
+  function menu() {
+    var x = document.getElementById('bur');
+    if(x.style.display === 'none'){
+      x.style.display = 'block'
+    }else{
+      x.style.display = 'none'
+    }
+  }
+</script>
 </html>

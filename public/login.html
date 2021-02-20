@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body class="w-screen bg-white md:bg-gray-300">
+    <header>
+        <!-- Nav bar-->
+        <nav class="w-screen flex items-center justify-between flex-wrap bg-teal p-6 fixed top-0 bg-white">
+            <div class="flex items-center flex-no-shrink text-black mr-6">
+              <a href="index.html" class="font-semibold text-xl tracking-tight">Wong IT</a>
+            </div>
+            <div class="block lg:hidden">
+              <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white" onclick="menu()">
+                <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+              </button>
+            </div>
+            <div class="w-screen lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden" id="bur">
+              <div class="text-sm lg:flex-grow">
+                <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                  Find Product
+                </a>
+                <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                  About
+                </a>
+              </div>   
+            </div>
+          </nav>
+        
+    </header>
+
+    <main class="container-fluid w-screen h-screen flex items-center justify-center">
+
+        <!--Sign in form-->
+        <form class="w-min h-min bg-white rounded-xl md:shadow-lg md:p-12">
+            <div>
+                <h1 class="text-center pb-3 text-xl">
+                    Sign in to <strong>Wong IT</strong>
+                </h1>
+                <p class="pt-3 font-bold">Username</p>
+                <div class="pb-4 pt-2">
+                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="txtUsername" required>
+                </div>
+                <p class="pt-3 font-bold">Password</p>
+                <div class="pb-4 pt-2">
+                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="password" id="txtPassword" required>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center">
+                    <button type="submit" class="w-max text-sm text-center px-6 py-2 rounded-md border hover:bg-gray-100" onclick="signIn()">Sign in</a>
+                </div>
+
+                <div class="flex items-center px-12 md:pr-12">
+                    <p class="pr-3 font-light hidden md:inline-flex">Not a member?</p>
+                    <a href="register.html" class="text-blue-500 w-max">Sign up</a>
+                </div>
+            </div>
+        </form>
+        
+
+    </main>
+
+    <footer class="w-screen h-12 flex justify-center bg-gray-200 items-center fixed bottom-0">
+      <p class="copyright">Wong IT © 2021</p>
+    </footer>
+
+    
+    
+</body>
+<script>
+  function menu() {
+    var x = document.getElementById('bur');
+    if(x.style.display === 'none'){
+      x.style.display = 'block'
+    }else{
+      x.style.display = 'none'
+    }
+  }
+
+  function signIn() {
+    var user = document.getElementById("txtUsername");
+    console.log(user.value)
+    if (user.value === "admin") {
+      window.open("dashboard.html");
+    }
+  }
+  
+</script>
+</html>
