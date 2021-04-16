@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
     <title>About us</title>
 </head>
 <body>
@@ -27,10 +28,10 @@
             About
           </a>
         </div>
-        <div>
+        <div id="loginStatus">
           <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 mr-4">Sign in</a>
         </div>
-        <div>
+        <div id="sideLogin">
           <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
         </div>
       </div>
@@ -59,12 +60,12 @@
 
               <div class="flex items-center justify-left p-12">
                 <img src="assets/img/profile/plume.jpeg" class="rounded-full w-24 h-24 md:w-48 md:h-48 bg-gray-300">
-                <p class="pl-5"><strong class="pr-12">Pasakron Wongtala</strong>6288144</p>
+                <p class="pl-5"><strong class="pr-12">Pasakorn Wongtala</strong>6288144</p>
               </div>
 
               <div class="flex items-center justify-left p-12">
                 <img src="assets/img/profile/oom.jpeg" class="rounded-full w-24 h-24 md:w-48 md:h-48 bg-gray-300">
-                <p class="pl-5"><strong class="pr-12">Nichapat Komji</strong>6288175</p>
+                <p class="pl-5"><strong class="pr-12">Nichapat Komjit</strong>6288175</p>
               </div>
         
             </div>
@@ -80,6 +81,27 @@
 
 </body>
 <script>
+  // Check login status
+  isExpired();
+
+  async function isExpired() {
+      const res = await(await fetch("http://localhost:3030/login", {
+          method: "GET",
+          headers: {
+              'Authorization': 'Bearer ' + getCookie('token'),
+          }
+      }
+      )).json();
+
+      if(getCookie('auth')==='true' && res.auth) {
+          document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username}</p>`;    
+          document.getElementById("sideLogin").innerHTML = `<button onclick="logout()" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Logout</button>`;
+      }
+      else {
+          document.cookie = `auth=false`;
+      }
+  }
+
   function menu() {
     var x = document.getElementById('bur');
     if(x.style.display === 'none'){

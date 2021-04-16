@@ -1,0 +1,310 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <title>Dashboard</title>
+</head>
+<body class="w-screen bg-white">
+    <header>
+        <!-- Nav bar-->
+        <nav class="w-full flex items-center justify-between flex-wrap bg-teal p-6 top-0 bg-white border-b-2">
+            <div class="flex items-center flex-no-shrink text-black mr-6">
+              <a href="index.html" class="font-semibold text-xl tracking-tight">Wong IT</a>
+            </div>
+            <div class="block lg:hidden">
+              <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white" onclick="menu()">
+                <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+              </button>
+            </div>
+            <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden" id="bur">
+              <div class="text-sm lg:flex-grow">
+                <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                  Find Product
+                </a>
+                <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                  About
+                </a>
+                <a href="dashboard.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                    Dashboard
+                </a>
+              </div>
+              <div id="loginStatus">
+                <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 mr-4">Sign in</a>
+              </div>
+              <div id="sideLogin">
+                <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
+              </div>  
+            </div>
+          </nav>
+    </header>
+
+    <main class="container-fluid w-full h-screen flex">
+        <section class="min-w-full h-screen p-10 md:p-12">
+            <h1 class="pb-3 text-xl">
+                <strong>User Management</strong>
+            </h1>
+            <div class="flex justify-center p-1">
+                <input class="w-2/6 justify-center border rounded-md bg-gray-200 mr-2 pl-3" type="text" id="info" placeholder="Username...">
+                <input class="justify-center border rounded-md bg-gray-200 mr-2 text-center" type="text" id="searchCity" placeholder="City...">
+                <input class="rounded-md p-1" type="button" onclick="searchUser()" value="Search">
+            </div>
+            <div class="flex items-center justify-center overflow-hidden">
+                <div class="w-full lg:w-5/6">
+                    <div class="bg-white shadow-md rounded my-6">
+                        <table class="min-w-max w-full table-auto">
+                            <thead>
+                                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                    <th class="py-3 px-6 text-left">ID</th>
+                                    <th class="py-3 px-6 text-left">Username</th>
+                                    <th class="py-3 px-6 text-left">Role</th>
+                                    <th class="py-3 px-6 text-left">E-Mail</th>
+                                    <th class="py-3 px-6 text-left">Phone</th>
+                                    <th class="py-3 px-6 text-left">Address</th>
+                                    <th class="py-3 px-6 text-left">City</th>
+                                    <th class="py-3 px-6 text-left">Postcode</th>
+                                    <th class="py-3 px-6 text-center">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-600 text-sm font-light" id="itemShowcase"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="ml-6 mb-8 h-1/5">
+                <button class="w-max text-sm text-center px-4 py-2 rounded-md border hover:bg-gray-100" id="showInsertBtn" onclick="showInsertBox()">Show insert menu</button>
+                <div class="m-6 hidden" id="insertBox">
+                    <form class="w-screen md:w-max p-10 h-min bg-white rounded-xl md:shadow-lg md:p-12" id="innerForm" onsubmit="return register();">
+                        <div class="container grid grid-cols-1 md:grid-cols-2">
+                            <div>
+                                <h1 class="pb-3 text-xl font-bold">Insert - User</h1>
+                                <label class="pt-3 text-sm">Username <span class="text-red-500">*</span></label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="username" required>
+                                </div>
+                                <label class="pt-3 text-sm">Password <span class="text-red-500">*</span></label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="password" id="password" required>
+                                </div>
+                                <label class="pt-3 text-sm">E-mail <span class="text-red-500">*</span></label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="email" id="email" required>
+                                </div>
+                                <label class="pt-3 text-sm">Phone number</label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="tel" id="telNumber">
+                                </div>
+                            </div>
+                            <div class="md:ml-6 md:mt-10">
+                                <label class="pt-3 text-sm">Address</label>
+                                <div class="pb-4 pt-2">
+                                    <textarea class="min-w-full md:w-96 px-3 py-2 bg-gray-200 text-gray-700 border rounded" type="text" id="address" rows="4"></textarea>
+                                </div>
+                                <label class="pt-3 text-sm">City</label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="city">
+                                </div>
+                                <label class="pt-3 text-sm">Post code</label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="postcode">
+                                </div>
+                            </div>
+                        </div>
+                        
+            
+                        <div class="flex items-center justify-between py-4">
+                            <div class="flex items-center">
+                                <button class="text-sm text-center px-6 py-2 rounded-md border hover:bg-gray-100" type="submit">Register</button>
+                                <button class="text-sm text-center px-6 py-2 ml-5 rounded-md border hover:bg-gray-100" type="reset">Clear</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+
+    </main>
+
+    <footer class="w-full h-12 flex justify-center bg-gray-200 items-center fixed bottom-0">
+      <p class="copyright">Wong IT © 2021</p>
+    </footer>
+
+    
+    
+</body>
+<script>
+    // Check login status
+    isExpired();
+
+    async function isExpired() {
+        const res = await(await fetch("http://localhost:3030/login", {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + getCookie('token'),
+            }
+        }
+        )).json();
+
+        if(getCookie('auth')==='true' && res.auth) {
+            document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username}</p>`;    
+            document.getElementById("sideLogin").innerHTML = `<button onclick="logout()" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Logout</button>`;
+        }
+        else {
+            document.cookie = `auth=false`;
+        }
+    }
+
+  function menu() {
+    var x = document.getElementById('bur');
+    if(x.style.display === 'none'){
+      x.style.display = 'block'
+    }else{
+      x.style.display = 'none'
+    }
+  }
+
+  function showInsertBox() {
+      if(document.getElementById("insertBox").getAttribute("class").includes("hidden")) {
+        document.getElementById("insertBox").setAttribute("class","m-6");
+        document.getElementById("showInsertBtn").innerHTML = "Hide insert menu";
+      }
+      else {
+        document.getElementById("insertBox").setAttribute("class","m-6 hidden");
+        document.getElementById("showInsertBtn").innerHTML = "Show insert menu";
+      }
+  }
+
+  async function searchUser() {
+
+    let info = document.getElementById("info").value;
+    let city = document.getElementById("searchCity").value;
+
+    let url = `http://localhost:3030/getUser`;
+
+    if(info) {
+        url += `?info=${info}`;
+        if(city) {
+            url += `&city=${city}`;
+        }
+    }
+    else if(city) {
+        url += `?city=${city}`;
+    }
+
+    // Check Are there any user data in cookie.
+    // If no that means, user is not login yet.
+    // This is not a good condition enough but I just noticed the bug. Then I am lazy to fix all conditons.
+    if(!JSON.parse(getCookie('user'))) {
+        alert("Please login.");
+        return;
+    }
+
+    const res = await (await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getCookie('token'),
+            'role': JSON.parse(getCookie('user'))[0].role,
+        }
+    })).json();
+    if(!res.noUser && res.err === false) {
+        let output = ``;
+        res.result.forEach(user => {
+            output += 
+            `
+            <tr class="border-b border-gray-200 bg-gray-50 hover:bg-gray-100">
+                <td class="py-3 px-6 text-left">
+                    <div class="flex items-center">${user.id}</div>
+                </td>
+                <td class="py-3 px-6 text-left">
+                    <div class="flex items-center">${user.username}</div>
+                </td>
+                <td class="py-3 px-6 text-left">
+                    ${user.role} <button onclick="changeRole(${user.id}, '${user.role}')" class="rounded-md p-1 ml-2 bg-gray-100 border-gray-200 border hover:bg-blue-300">Change</button>
+                </td>
+                <td class="py-3 px-6 text-left">${user.email}</td>
+                <td class="py-3 px-6 text-left">${user.phone}</td>
+                <td class="py-3 px-6 text-left max-w-xs">${user.address}</td>
+                <td class="py-3 px-6 text-left">${user.city}</td>
+                <td class="py-3 px-6 text-left">${user.postcode}</td>
+                <td class="py-3 px-6 text-left">
+                    <div class="flex item-center justify-center">
+                        <button class="hover:text-red-500" onclick="removeItem(${user.id})">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            `;
+        });
+        document.getElementById("itemShowcase").innerHTML = output;
+    }
+    else if(res.noProduct){
+        document.getElementById("itemShowcase").innerHTML = `No user`;
+    }
+    else {
+        alert("Please login.");
+    }
+  }
+
+  async function register() {
+    let user = {
+      username: document.getElementById('username').value,
+      password: document.getElementById('password').value,
+      email: document.getElementById('email').value,
+      tel: document.getElementById('telNumber').value,
+      address: document.getElementById('address').value,
+      city: document.getElementById('city').value,
+      postcode: document.getElementById('postcode').value,
+    }
+    const res = await (await fetch("http://localhost:3030/register", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })).json();
+    console.log(res);
+    if(res.registered) {
+      alert(res.message);
+      window.location.href = 'manageUser.html';
+    }
+    else {
+      alert(res.message)
+    }
+  }
+
+  async function removeItem(id) {
+      const res = await (await fetch("http://localhost:3030/removeUser", {
+          method: "DELETE",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + getCookie('token'),
+              'role': JSON.parse(getCookie('user'))[0].role,
+          },
+          body: JSON.stringify({id})
+      })).json();
+      alert(res.message);
+      searchUser();
+      if(JSON.parse(getCookie('user'))[0].id === id) logout();
+  }
+
+  async function changeRole(id, value) {
+    const res = await (await fetch("http://localhost:3030/changeRole", {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getCookie('token'),
+            'role': JSON.parse(getCookie('user'))[0].role,
+        },
+        body: JSON.stringify({id: id, value: value})
+        })).json();
+        alert(res.message);
+        searchUser();
+        if(JSON.parse(getCookie('user'))[0].id === id) logout();
+  }
+
+
+</script>
+</html>

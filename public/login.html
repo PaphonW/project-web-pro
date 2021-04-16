@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
     <title>Login</title>
 </head>
 <body class="w-screen bg-white md:bg-gray-300">
@@ -36,7 +37,7 @@
     <main class="container-fluid w-screen h-screen flex items-center justify-center">
 
         <!--Sign in form-->
-        <form class="w-min h-min bg-white rounded-xl md:shadow-lg md:p-12">
+        <form class="w-min h-min bg-white rounded-xl md:shadow-lg md:p-12" onsubmit="return false;">
             <div>
                 <h1 class="text-center pb-3 text-xl">
                     Sign in to <strong>Wong IT</strong>
@@ -83,12 +84,41 @@
     }
   }
 
-  function signIn() {
-    var user = document.getElementById("txtUsername");
-    console.log(user.value)
-    if (user.value === "admin") {
-      window.open("dashboard.html");
+  async function signIn() {
+    // var user = document.getElementById("txtUsername");
+    // console.log(user.value)
+    // if (user.value === "admin") {
+    //   window.open("dashboard.html");
+    // }
+
+    let info = {
+      username: document.getElementById("txtUsername").value,
+      password: document.getElementById("txtPassword").value
     }
+
+    const res = await (await fetch("http://localhost:3030/login", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(info)
+    })).json();
+
+    if(!res.err) {
+      document.cookie = `auth=${res.auth}`;
+      document.cookie = `token=${res.token}`;
+      document.cookie = `user=${JSON.stringify(res.result)}`;
+      if(res.result[0].role === 'admin') {
+        window.location.href = 'dashboard.html';
+      }
+      else {
+        window.location.href = 'index.html';
+      }
+    }
+    else {
+      alert(res.message);
+    }
+    
   }
   
 </script>
