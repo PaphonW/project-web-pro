@@ -53,7 +53,7 @@
                     <div class="flex justify-center p-1">
                       <input class="w-2/6 justify-center border rounded-md bg-gray-200 mr-2 pl-3" type="text" id="info" placeholder="Information..." name="srch">
                       <input class="justify-center border rounded-md bg-gray-200 mr-2 text-center" type="text" id="maxPrice" placeholder="Maximum Price">
-                      <label class="inline-flex items-center mr-2 pr-2 border-r">
+                      <label class="inline-flex items-center mr-2 pr-2">
                           <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" id="inStock" checked><span class="ml-2 text-gray-700">Available in stock</span>
                       </label>
                     </div>
@@ -87,7 +87,7 @@
       )).json();
 
       if(getCookie('auth')==='true' && res.auth) {
-          document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username}</p>`;    
+          document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username} <span class="text-blue-600">[${getCookie('country')}]</span></p>`;
           document.getElementById("sideLogin").innerHTML = `<button onclick="logout()" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Logout</button>`;
       }
       else {

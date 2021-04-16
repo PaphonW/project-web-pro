@@ -104,10 +104,14 @@
       body: JSON.stringify(info)
     })).json();
 
+    // Call public API for show country where user logged in.
+    const ipRes = await (await fetch("https://api.ipgeolocation.io/ipgeo?apiKey=13eb6deade844b72b1447140ccdaa947")).json();
+
     if(!res.err) {
       document.cookie = `auth=${res.auth}`;
       document.cookie = `token=${res.token}`;
       document.cookie = `user=${JSON.stringify(res.result)}`;
+      document.cookie = `country=${ipRes.country_name}`;
       if(res.result[0].role === 'admin') {
         window.location.href = 'dashboard.html';
       }

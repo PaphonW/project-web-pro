@@ -22,8 +22,9 @@ async function logout() {
     document.cookie = `auth=${res.auth}`;
     document.cookie = `token=${res.token}`;
     document.cookie = `user=${JSON.stringify(res.result)}`;
+    document.cookie = `country=`;
     sessionStorage.removeItem('data');
     sessionStorage.removeItem('searchInfo');
     alert("You are logged out.");
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
 }

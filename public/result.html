@@ -73,7 +73,7 @@
       )).json();
 
       if(getCookie('auth')==='true' && res.auth) {
-          document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username}</p>`;    
+        document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username} <span class="text-blue-600">[${getCookie('country')}]</span></p>`;
           document.getElementById("sideLogin").innerHTML = `<button onclick="logout()" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Logout</button>`;
       }
       else {
