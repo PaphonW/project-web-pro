@@ -62,6 +62,35 @@ const adminAuthorize = (req, res, next) => {
 // ***** *****
 
 // This function can use with user role and admin role.
+
+// Testing resgiter (1)
+// method: POST
+// URL: http://localhost:3030/register
+// body: raw JSON
+// {
+//     "username": "palm11695",
+//     "password": "natanonrit",
+//     "email": "natanon.rit@student.mahidol.edu",
+//     "phone": "0901231234",
+//     "address": "888 Skypark Condo",
+//     "city": "Nakhon Pathom",
+//     "postcode": "70130"
+// }
+
+// Testing register (2)
+// method: POST
+// URL: http://localhost:3030/register
+// body: raw JSON
+// {
+//     "username": "Hikari",
+//     "password": "Wlight",
+//     "email": "paphon@wongit.com",
+//     "phone": "0834285501",
+//     "address": "532/4",
+//     "city": "Bangkok",
+//     "postcode": "10130"
+// }
+
 router.post("/register", (req, res) => {
     // console.log(req.body);
     const username = req.body.username;
@@ -111,13 +140,39 @@ router.post("/register", (req, res) => {
 
 });
 
+// Check that token is not expired.
 router.get("/login", authorize, (req, res) => {
     res.json({auth: true});
 });
 
+
+// Logout
+// method: GET
+// URL: http://localhost:3030/logout
+// Don't need to send any value.
+
 router.get("/logout", (req, res) => {
     res.json({auth: false, token: "", result: ""});
 });
+
+// Login **(You have to get token from this service to check the other services that need to authorize.)**
+// Testing login (1)
+// method: POST
+// URL: http://localhost:3030/login
+// body: raw JSON
+// {
+//     "username": "admin",
+//     "password": "admin"
+// }
+
+// Testing login (2)
+// method: POST
+// URL: http://localhost:3030/login
+// body: raw JSON
+// {
+//     "username": "Lelouch",
+//     "password": "345678912"
+// }
 
 router.post("/login", (req, res) => {
     const username = req.body.username;
@@ -144,6 +199,22 @@ router.post("/login", (req, res) => {
 });
 
 // Retrieve user for admin
+// Testing getUser (1)
+// method: GET
+// URL: http://localhost:3030/getUser
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+
+// Testing getUser (2)
+// method: GET
+// URL: http://localhost:3030/getUser?info=Wat
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+
 router.get("/getUser", adminAuthorize, (req, res) => {
 
     let info = req.query.info;
@@ -177,7 +248,33 @@ router.get("/getUser", adminAuthorize, (req, res) => {
     );
 });
 
-// Change account's role
+// Change account's role (It will change to the opposite role(value).)
+// Testing login (1)
+// method: PUT
+// URL: http://localhost:3030/changeRole
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "id": "1",
+//     "value": "user"
+// }
+
+// Testing login (2)
+// method: PUT
+// URL: http://localhost:3030/changeRole
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "id": "2",
+//     "value": "user"
+// }
+
 router.put("/changeRole", adminAuthorize, (req, res) => {
     let newRole;
     req.body.value==='admin' ? newRole='user':newRole='admin';
@@ -196,6 +293,29 @@ router.put("/changeRole", adminAuthorize, (req, res) => {
 });
 
 // Remove User by admin
+// Testing remove user (1)
+// method: DELETE
+// URL: http://localhost:3030/removeUser
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//      "id": "1"
+// }
+
+// Testing remove user (2)
+// method: DELETE
+// URL: http://localhost:3030/removeUser
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//      "id": "2"
+// }
 router.delete("/removeUser", adminAuthorize, (req, res) => {
     if(req.body.id) {
         dbConnect.query(
@@ -219,7 +339,12 @@ router.delete("/removeUser", adminAuthorize, (req, res) => {
     }
 });
 
-// For showing in index page
+// For showing in index page ** It will send 8 products for the most.
+// Retrieve user for admin
+// Testing get product(s) (1)
+// method: GET
+// URL: http://localhost:3030/recommend
+// Just use to show the recommend items on index page.
 router.get("/recommend", (req, res) => {
     dbConnect.query(
         "SELECT * FROM product ORDER BY prdID ASC LIMIT 8",
@@ -237,6 +362,21 @@ router.get("/recommend", (req, res) => {
 });
 
 // Searching all products in database
+// Retrieve user for admin
+// Testing get product(s) (1)
+// method: GET
+// URL: http://localhost:3030/products?info=RTX
+// headers: {
+//      'authorization': 'Bearer <token>',
+// }
+
+// Testing get product(s) (2)
+// method: GET
+// URL: http://localhost:3030/products?info=RTX&maxPrice=2000
+// headers: {
+//      'authorization': 'Bearer <token>',
+// }
+
 router.get("/products", authorize, (req, res) => {
     
     let info = req.query.info;
@@ -283,6 +423,44 @@ router.get("/products", authorize, (req, res) => {
 });
 
 // Insert product by admin
+// Testing insert product (1)
+// method: POST
+// URL: http://localhost:3030/insertProduct
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "product": {
+//         "prdName": "Razer Blade 15",
+//         "prdPrice": "2099",
+//         "prdStock": "2",
+//         "imgSrc": "16vUOP350XRUXSX0J4u1bGNwFX1X09bxh",
+//         "prdDescription": "Just when you thought a gaming laptop couldn’t be any more beastly—introducing the new Razer Blade 15, now available with NVIDIA® GeForce RTX™ 30 Series GPUs for the most powerful gaming laptop graphics ever. The Advanced Model now features the world’s first and fastest 15.6” laptop displays."
+//     }
+// }
+// imgSrc is a image id from Google Drive.
+
+// Testing insert product (2)
+// method: POST
+// URL: http://localhost:3030/insertProduct
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "product": {
+//         "prdName": "MSI GL75 Leopard",
+//         "prdPrice": "1500",
+//         "prdStock": "5",
+//         "imgSrc": "1EoapqcUPoK3xHyO51bo9jOSVMK8rok9w",
+//         "prdDescription": "Just when you thought a gaming laptop couldn’t be any more beastly—introducing the new Razer Blade 15, now available with NVIDIA® GeForce RTX™ 30 Series GPUs for the most powerful gaming laptop graphics ever. The Advanced Model now features the world’s first and fastest 15.6” laptop displays."
+//     }
+// }
+// imgSrc is a image id from Google Drive.
+
 router.post("/insertProduct", adminAuthorize, (req, res) => {
     if(req.body.product) {
         dbConnect.query(
@@ -299,6 +477,32 @@ router.post("/insertProduct", adminAuthorize, (req, res) => {
 });
 
 // Update product stock by admin
+// Testing update product (1)
+// method: PUT
+// URL: http://localhost:3030/updateProduct
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "id": "1",
+//     "value": "5"
+// }
+
+// Testing update product (2)
+// method: PUT
+// URL: http://localhost:3030/updateProduct
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "id": "3",
+//     "value": "8"
+// }
+
 router.put("/updateProduct", adminAuthorize, (req, res) => {
     if(req.body.value && req.body.id) {
         dbConnect.query(
@@ -316,6 +520,29 @@ router.put("/updateProduct", adminAuthorize, (req, res) => {
 });
 
 // Delete product by admin
+// Testing remove product (1)
+// method: PUT
+// URL: http://localhost:3030/removeProduct
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "id": "1",
+// }
+
+// Testing remove product (2)
+// method: PUT
+// URL: http://localhost:3030/removeProduct
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+// body: raw JSON
+// {
+//     "id": "8",
+// }
 router.delete("/removeProduct", adminAuthorize, (req, res) => {
     if(req.body.id) {
         dbConnect.query(
