@@ -111,7 +111,7 @@
     let inStock = ``;
 
     sessionStorage.setItem('searchInfo',info);
-    document.getElementById("inStock").checked ? inStock = `>`: inStock = `<`;
+    document.getElementById("inStock").checked ? inStock = `>`: inStock = `<=`;
 
     let url = `http://localhost:3030/products`;
     url += `?inStock=${inStock}`;
