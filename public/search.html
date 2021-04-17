@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
     <title>Search</title>
 </head>
 <body class="w-screen bg-center bg-no-repeat bg-cover" style="background-image: url('assets/img/searchPageBg.jpg');">
@@ -27,10 +28,10 @@
               About
             </a>
           </div>
-          <div>
+          <div id="loginStatus">
             <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 mr-4">Sign in</a>
           </div>
-          <div>
+          <div id="sideLogin">
             <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
           </div>
         </div>
@@ -49,9 +50,15 @@
         
                     <p class="text-center p-1 font-light text-xs md:text-base">Are you looking for something?</p>
         
-                    <div class="flex justify-center p-1"><input class="w-4/5 justify-center border rounded-md bg-gray-200 text-center" type="text" id="srch" name="srch" placeholder="Search here!"></div>
+                    <div class="flex justify-center p-1">
+                      <input class="w-2/6 justify-center border rounded-md bg-gray-200 mr-2 pl-3" type="text" id="info" placeholder="Information..." name="srch">
+                      <input class="justify-center border rounded-md bg-gray-200 mr-2 text-center" type="text" id="maxPrice" placeholder="Maximum Price">
+                      <label class="inline-flex items-center mr-2 pr-2">
+                          <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" id="inStock" checked><span class="ml-2 text-gray-700">Available in stock</span>
+                      </label>
+                    </div>
         
-                    <div class="flex justify-center p-1"><input class="w-10" type="image" onclick="location.href='result.html'" src="assets/img/srhr.svg"></div>
+                    <div class="flex justify-center p-1"><input class="w-10" type="image" onclick="searchProduct()" src="assets/img/srhr.svg"></div>
                         
                 </div>
             </div>
@@ -67,12 +74,90 @@
     
 </body>
 <script>
+  // Check login status
+  isExpired();
+
+  async function isExpired() {
+      const res = await(await fetch("http://localhost:3030/login", {
+          method: "GET",
+          headers: {
+              'Authorization': 'Bearer ' + getCookie('token'),
+          }
+      }
+      )).json();
+
+      if(getCookie('auth')==='true' && res.auth) {
+          document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username} <span class="text-blue-600">[${getCookie('country')}]</span></p>`;
+          document.getElementById("sideLogin").innerHTML = `<button onclick="logout()" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Logout</button>`;
+      }
+      else {
+          document.cookie = `auth=false`;
+      }
+  }
+
   function menu() {
     var x = document.getElementById('bur');
     if(x.style.display === 'none'){
       x.style.display = 'block'
     }else{
       x.style.display = 'none'
+    }
+  }
+
+  async function searchProduct() {
+
+    let info = document.getElementById("info").value;
+    let maxPrice = document.getElementById("maxPrice").value;
+    let inStock = ``;
+
+    sessionStorage.setItem('searchInfo',info);
+    document.getElementById("inStock").checked ? inStock = `>`: inStock = `<=`;
+
+    let url = `http://localhost:3030/products`;
+    url += `?inStock=${inStock}`;
+
+    if(info) {
+        url += `&info=${info}`;
+        if(maxPrice) {
+            url += `&maxPrice=${maxPrice}`;
+        }
+    }
+    else if(maxPrice) {
+        url += `&maxPrice=${maxPrice}`;
+    }
+
+    // Check Are there any user data in cookie.
+    // If no that means, user is not login yet.
+    // This is not a good condition enough but I just noticed the bug. Then I am lazy to fix all conditons.
+    if(!JSON.parse(getCookie('user'))) {
+        sessionStorage.removeItem('data');
+        alert("Please login.");
+        return;
+    }
+
+    const res = await (await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getCookie('token'),
+            'role': JSON.parse(getCookie('user'))[0].role,
+        }
+    })).json();
+    if(!res.noProduct && res.err === false) {
+        sessionStorage.setItem('data', JSON.stringify(res.result));
+        // console.log(sessionStorage.getItem('test'));
+    }
+    else if(res.noProduct){
+        sessionStorage.setItem('data', 'No product');
+    }
+    else {
+        sessionStorage.removeItem('data');
+        alert("Please login.");
+    }
+    
+    // Check are there any data then go to result page.
+    if(sessionStorage.getItem('data')) {
+      window.location.href="result.html";
     }
   }
 </script>

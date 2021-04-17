@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
     <title>Home</title>
 </head>
 <body class="w-full">
@@ -27,10 +28,10 @@
               About
             </a>
           </div>
-          <div>
+          <div id="loginStatus">
             <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Sign in</a>
           </div>
-          <div>
+          <div id="sideLogin">
             <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
           </div>
         </div>
@@ -57,107 +58,7 @@
         
         <!--recommend items-->
         <section class="w-full flex justify-center">
-
-          <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
-
-            <!--item-->
-            <div class="container-md flex justify-center">
-              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                <img class="w-full" src="assets/img/product/HP15.jpg" alt="Sunset in the mountains">
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">OMEN Laptop-15</div>
-                  <p class="text-grey-darker text-base">
-                    The powerful gaming beast lets you experience high-grade graphics and processing power that meets your gaming and multitasking needs. | With AMD Ryzen7 4800H Processor up to 8 cores and 16 threads
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,101.00$/pcs</span>
-                </div>
-              </div>
-            </div>
-
-            <!--item-->
-            <div class="container-md flex justify-center">
-              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                <img class="w-full" src="assets/img/product/MSI.jpg" alt="GE66">
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">MSI GE66 Raider</div>
-                  <p class="text-grey-darker text-base">
-                    GE66 Raider is the cross between aesthetics and performance, the keys to a solid laptop. The exterior of the GE66 features an oblique angle which unfolds its crafted sharp image.
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>2,799.00$/pcs</span>
-                </div>
-              </div>
-            </div>
-
-            <!--item-->
-            <div class="container-md flex justify-center">
-              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                <img class="w-full" src="assets/img/product/Legion 7.jpg" alt="Lenovo">
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">Lenovo Legion 7i</div>
-                  <p class="text-grey-darker text-base">
-                    Unlimited access to over 100 high-quality PC games on Windows 10 and the GeForce® RTX 2080 SUPER™ with Max Q Design is powered by the award-winning NVIDIA Turing™ architecture with more cores, higher clocks, and faster memory for ultimate performance and incredible new levels of realism.
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,399.99/pcs</span>
-                </div>
-              </div>
-            </div>
-
-            <!--item-->
-            <div class="container-md flex justify-center">
-              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                <img class="w-full" src="assets/img/product/G15.jpg" alt="G15">
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">Asus ROG Strix G15</div>
-                  <p class="text-grey-darker text-base">
-                    The ROG Strix G15 embodies streamlined design, offering a experience for serious gaming and multitasking on Windows 10 Home. Featuring up to the latest 10th Gen Intel® Core™ i7 CPU and up to NVIDIA® GeForce RTX™ 2060 GPU, it offers high-FPS power that takes full advantage of up to a blazing fast 240Hz/3ms display.
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,101.45/pcs</span>
-                </div>
-              </div>
-            </div>
-
-            <!--item-->
-            <div class="container-md flex justify-center">
-              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                <img class="w-full" src="assets/img/product/G14.jpg" alt="G14">
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">Asus ROG Zephyrus G14</div>
-                  <p class="text-grey-darker text-base">
-                    ROG Zephyrus G14 is the world’s most powerful 14-inch Windows 10 Pro gaming laptop. Outclass the competition with up to an 8-core AMD Ryzen™ 9 4900HS CPU and potent GeForce RTX™ 2060 GPU that speed through everyday multitasking and gaming.
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,199.99/pcs</span>
-                </div>
-              </div>
-            </div>
-
-            <!--item-->
-            <div class="container-md flex justify-center">
-              <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
-                <img class="w-full" src="assets/img/product/alienware.jpg" alt="alien">
-                <div class="px-6 py-4">
-                  <div class="font-bold text-xl mb-2">DELL Alienware Area-51m R2</div>
-                  <p class="text-grey-darker text-base">
-                    Gaming is better than ever on Windows 10, with games in 4K and DirectX 12. 10th Gen Intel® Core™ i9K desktop processors, support for up to 125W of power, and 10-core desktop CPU, AMD Radeon™ graphics 360Hz FHD display.
-                  </p>
-                </div>
-                <div class="px-6 py-4">
-                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>1,899.99/pcs</span>
-                </div>
-              </div>
-            </div>
-              
-
-          </div>
+          <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full" id="itemShowcase"></div>
         </section>         
     </main>
 
@@ -167,6 +68,27 @@
 
 </body>
 <script>
+  // Check login status
+  isExpired();
+
+  async function isExpired() {
+      const res = await(await fetch("http://localhost:3030/login", {
+          method: "GET",
+          headers: {
+              'Authorization': 'Bearer ' + getCookie('token'),
+          }
+      }
+      )).json();
+      
+      if(getCookie('auth')==='true' && res.auth) {
+        document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username} <span class="text-blue-600">[${getCookie('country')}]</span></p>`;
+          document.getElementById("sideLogin").innerHTML = `<button onclick="logout()" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Logout</button>`;
+      }
+      else {
+          document.cookie = `auth=false`;
+      }
+  }
+
   function menu() {
     var x = document.getElementById('bur');
     if(x.style.display === 'none'){
@@ -175,5 +97,38 @@
       x.style.display = 'none'
     }
   }
+
+  async function retrieveProduct() {
+    const res = await (await fetch("http://localhost:3030/recommend", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })).json();
+    if(!res.noProduct && !res.err) {
+      res.forEach(product => {
+        document.getElementById("itemShowcase").innerHTML += 
+        `
+        <div class="container-md flex justify-center">
+          <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
+            <img class="w-full" src="https://drive.google.com/uc?export=view&id=${product.imgSrc}" alt="${product.prdName}">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">${product.prdName}</div>
+              <p class="text-grey-darker text-base">${product.prdDescription}</p>
+            </div>
+            <div class="px-6 py-4">
+                  <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2"><strong>Price:</strong>${product.prdPrice}$/pcs</span>
+            </div>
+          </div>
+        </div>
+        `
+      });
+    }
+    else {
+      document.getElementById("itemShowcase").innerHTML = `No product`;
+    }
+  }
+  retrieveProduct();
+
 </script>
 </html>

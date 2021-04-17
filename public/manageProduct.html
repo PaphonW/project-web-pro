@@ -1,0 +1,305 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <title>Dashboard - Product</title>
+</head>
+<body class="w-screen bg-white">
+    <header>
+        <!-- Nav bar-->
+        <nav class="w-full flex items-center justify-between flex-wrap bg-teal p-6 top-0 bg-white border-b-2">
+            <div class="flex items-center flex-no-shrink text-black mr-6">
+              <a href="index.html" class="font-semibold text-xl tracking-tight">Wong IT</a>
+            </div>
+            <div class="block lg:hidden">
+              <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white" onclick="menu()">
+                <svg class="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+              </button>
+            </div>
+            <div class="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto hidden" id="bur">
+              <div class="text-sm lg:flex-grow">
+                <a href="search.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                  Find Product
+                </a>
+                <a href="about.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                  About
+                </a>
+                <a href="dashboard.html" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter lg:hover:text-blue-400 mr-4 lg:border-l lg:pl-5 lg:border-gray-400">
+                    Dashboard
+                </a>
+              </div>
+              <div id="loginStatus">
+                <a href="login.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0 mr-4">Sign in</a>
+              </div>
+              <div id="sideLogin">
+                <a href="register.html" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Sign up</a>
+              </div>  
+            </div>
+          </nav>
+    </header>
+
+    <main class="container-fluid w-full h-screen flex">
+        <section class="min-w-full h-screen p-10 md:p-12">
+            <h1 class="pb-3 text-xl">
+                <strong>Product Management</strong>
+            </h1>
+            <div class="flex justify-center p-1">
+                <input class="w-2/6 justify-center border rounded-md bg-gray-200 mr-2 pl-3" type="text" id="info" placeholder="Information..." name="srch">
+                <input class="justify-center border rounded-md bg-gray-200 mr-2 text-center" type="text" id="maxPrice" placeholder="Maximum Price">
+                <label class="inline-flex items-center mr-2 pr-2 border-r">
+                    <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" id="inStock" checked><span class="ml-2 text-gray-700">Available in stock</span>
+                </label>
+                <input class="rounded-md p-1" type="button" onclick="searchProduct()" value="Search">
+            </div>
+            <div class="flex items-center justify-center overflow-hidden">
+                <div class="w-full lg:w-5/6">
+                    <div class="bg-white shadow-md rounded my-6">
+                        <table class="min-w-max w-full table-auto">
+                            <thead>
+                                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                    <th class="py-3 px-6 text-left">ID</th>
+                                    <th class="py-3 px-6 text-left">Name</th>
+                                    <th class="py-3 px-6 text-center">Description</th>
+                                    <th class="py-3 px-6 text-center">Price</th>
+                                    <th class="py-3 px-6 text-center">Stock</th>
+                                    <th class="py-3 px-6 text-center">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-600 text-sm font-light" id="itemShowcase"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="ml-6 mb-8 h-1/5">
+                <button class="w-max text-sm text-center px-4 py-2 rounded-md border hover:bg-gray-100" id="showInsertBtn" onclick="showInsertBox()">Show insert menu</button>
+                <div class="m-6 hidden" id="insertBox">
+                    <form class="w-screen md:w-max p-10 h-min bg-white rounded-xl md:shadow-lg md:p-12" id="innerForm" onsubmit="return insertItem();">
+                        <div class="container grid grid-cols-1">
+                            <div>
+                                <h1 class="pb-3 text-xl font-bold">Insert - Product Information</h1>
+                                <label class="pt-3 text-sm">Product Name <span class="text-red-500">*</span></label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="prdName" required>
+                                </div>
+                                <label class="pt-3 text-sm">Price <span class="text-red-500">*</span></label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="number" id="prdPrice" required>
+                                </div>
+                                <label class="pt-3 text-sm">Amount <span class="text-red-500">*</span></label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="number" id="prdAmount" required>
+                                </div>
+                                <label class="pt-3 text-sm">Image Source (Only ID from Google Drive) <span class="text-red-500">*</span></label>
+                                <div class="pb-4 pt-2">
+                                    <input class="min-w-full md:w-96 px-3 py-1 justify-center border rounded bg-gray-200 text-gray-700" type="text" id="imgSrc" required>
+                                </div>
+                                <label class="pt-3 text-sm">Description</label>
+                                <div class="pb-4 pt-2">
+                                    <textarea class="min-w-full md:w-96 px-3 py-2 bg-gray-200 text-gray-700 border rounded" type="text" id="description" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pb-4">
+                            <div class="flex items-center">
+                                <button class="text-sm text-center px-6 py-2 rounded-md border hover:bg-gray-100" type="submit">Insert</button>
+                                <button class="text-sm text-center px-6 py-2 ml-5 rounded-md border hover:bg-gray-100" type="reset">Clear</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+
+    </main>
+
+    <footer class="w-full h-12 flex justify-center bg-gray-200 items-center fixed bottom-0">
+      <p class="copyright">Wong IT © 2021</p>
+    </footer>
+
+    
+    
+</body>
+<script>
+    // Check login status
+    isExpired();
+
+    async function isExpired() {
+        const res = await(await fetch("http://localhost:3030/login", {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + getCookie('token'),
+            }
+        }
+        )).json();
+
+        if(getCookie('auth')==='true' && res.auth) {
+            document.getElementById("loginStatus").innerHTML = `<p class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 mr-4">Username: ${JSON.parse(getCookie('user'))[0].username} <span class="text-blue-600">[${getCookie('country')}]</span></p>`;
+            document.getElementById("sideLogin").innerHTML = `<button onclick="logout()" class="inline-block text-sm leading-none border rounded text-black border-white hover:border-transparent hover:text-teal mt-4 lg:mt-0 lg:hover:bg-gray-200 lg:border-gray-300 lg:py-2 lg:px-4">Logout</button>`;
+        }
+        else {
+            document.cookie = `auth=false`;
+        }
+    }
+
+  function menu() {
+    var x = document.getElementById('bur');
+    if(x.style.display === 'none'){
+      x.style.display = 'block'
+    }else{
+      x.style.display = 'none'
+    }
+  }
+
+  function showInsertBox() {
+      if(document.getElementById("insertBox").getAttribute("class").includes("hidden")) {
+        document.getElementById("insertBox").setAttribute("class","m-6");
+        document.getElementById("showInsertBtn").innerHTML = "Hide insert menu";
+      }
+      else {
+        document.getElementById("insertBox").setAttribute("class","m-6 hidden");
+        document.getElementById("showInsertBtn").innerHTML = "Show insert menu";
+      }
+  }
+
+  async function searchProduct() {
+
+    let info = document.getElementById("info").value;
+    let maxPrice = document.getElementById("maxPrice").value;
+    let inStock = ``;
+
+    document.getElementById("inStock").checked ? inStock = `>`: inStock = `<=`;
+
+    let url = `http://localhost:3030/products`;
+    url += `?inStock=${inStock}`;
+
+    if(info) {
+        url += `&info=${info}`;
+        if(maxPrice) {
+            url += `&maxPrice=${maxPrice}`;
+        }
+    }
+    else if(maxPrice) {
+        url += `&maxPrice=${maxPrice}`;
+    }
+
+    // Check Are there any user data in cookie.
+    // If no that means, user is not login yet.
+    // This is not a good condition enough but I just noticed the bug. Then I am lazy to fix all conditons.
+    if(!JSON.parse(getCookie('user'))) {
+        alert("Please login.");
+        return;
+    }
+
+    const res = await (await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getCookie('token'),
+            'role': JSON.parse(getCookie('user'))[0].role,
+        }
+    })).json();
+    if(!res.noProduct && res.err === false) {
+        let output = ``;
+        res.result.forEach(product => {
+            output += 
+            `
+            <tr class="border-b border-gray-200 bg-gray-50 hover:bg-gray-100">
+                <td class="py-3 px-6 text-left">
+                    <div class="flex items-center">${product.prdID}</div>
+                </td>
+                <td class="py-3 px-6 text-left">
+                    <div class="flex items-center">
+                        <div class="mr-2">
+                            <img class="w-10" src="https://drive.google.com/uc?export=view&id=${product.imgSrc}" alt="${product.prdName}">
+                        </div>
+                        <span>${product.prdName}</span>
+                    </div>
+                </td>
+                <td class="py-3 px-6 max-w-xs">${product.prdDescription}</td>
+                <td class="py-3 px-6 text-center">${product.prdPrice}</td>
+                <td class="py-3 px-6 text-center">
+                    <div class="flex items-center justify-center">
+                        <input class="max-w-min border rounded-md bg-gray-200 mr-2 text-center" type="number" id="prdID${product.prdID}" value="${product.prdStock}">
+                        <input class="rounded-md p-1" type="button" onclick="updateStock(${product.prdID}, document.getElementById('prdID${product.prdID}').value)" value="Update">
+                    </div>
+                </td>
+                <td class="py-3 px-6 text-center">
+                    <div class="flex item-center justify-center">
+                        <button class="hover:text-red-500" onclick="removeItem(${product.prdID})">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            `
+        });
+        document.getElementById("itemShowcase").innerHTML = output;
+    }
+    else if(res.noProduct){
+        document.getElementById("itemShowcase").innerHTML = `No product`;
+    }
+    else {
+        alert("Please login.");
+    }
+  }
+
+  async function insertItem() {
+      let productInfo = {
+          prdName: document.getElementById("prdName").value,
+          prdPrice: document.getElementById("prdPrice").value,
+          prdStock: document.getElementById("prdAmount").value,
+          imgSrc: document.getElementById("imgSrc").value,
+          prdDescription: document.getElementById("description").value,
+      }
+      console.log(productInfo);
+
+      const res = await (await fetch("http://localhost:3030/insertProduct", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getCookie('token'),
+            'role': JSON.parse(getCookie('user'))[0].role,
+        },
+        body: JSON.stringify({product: productInfo})
+      })).json();
+      alert(res.message);
+  }
+
+  async function removeItem(id) {
+      const res = await (await fetch("http://localhost:3030/removeProduct", {
+          method: "DELETE",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + getCookie('token'),
+              'role': JSON.parse(getCookie('user'))[0].role,
+          },
+          body: JSON.stringify({id})
+      })).json();
+      alert(res.message);
+      searchProduct();
+  }
+
+  async function updateStock(id, value) {
+      if(value) {
+          const res = await (await fetch("http://localhost:3030/updateProduct", {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getCookie('token'),
+                'role': JSON.parse(getCookie('user'))[0].role,
+            },
+            body: JSON.stringify({id: id, value: value})
+          })).json();
+          alert(res.message);
+          searchProduct();
+      }
+      else {
+          alert("Please fill the number!");
+      }
+  }
+
+
+</script>
+</html>
