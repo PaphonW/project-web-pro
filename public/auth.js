@@ -13,10 +13,6 @@ function getCookie(cname) {
     return "";
 }
 
-// function isLogined() {
-
-// }
-
 async function logout() {
     const res = await (await fetch("http://localhost:3030/logout")).json();
     document.cookie = `auth=${res.auth}`;

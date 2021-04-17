@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS projectMock;
-CREATE DATABASE projectMock;
-USE projectMock;
+DROP DATABASE IF EXISTS sec2_gr8_database;
+CREATE DATABASE sec2_gr8_database;
+USE sec2_gr8_database;
 
 CREATE TABLE login_info (
 	id INT(1) PRIMARY KEY NOT NULL AUTO_INCREMENT,

@@ -43,6 +43,9 @@ const authorize = (req, res, next) => {
 };
 
 const adminAuthorize = (req, res, next) => {
+    // **Note: Change in next phase
+    // Change role from Database
+    // This method is not secure to verify admin.
     if(req.headers.role === 'admin') {
         // console.log("Admin accessed.")
         try {
@@ -141,6 +144,12 @@ router.post("/register", (req, res) => {
 });
 
 // Check that token is not expired.
+// method: GET
+// URL: http://localhost:3030/login
+// headers: {
+//      'authorization': 'Bearer <token>',
+// }
+
 router.get("/login", authorize, (req, res) => {
     res.json({auth: true});
 });
@@ -185,8 +194,10 @@ router.post("/login", (req, res) => {
             // Check if username and password are correspond in database
             if(result.length > 0) {
                 const id = result[0].id;
+                const username = result[0].username;
+                const role = result[0].role;
                 // get token with JWT
-                const token = jwt.sign({id}, process.env.SECRET, {
+                const token = jwt.sign({id: id, username: username, role: role}, process.env.SECRET, {
                     expiresIn: "1h",
                 });
                 res.json({err:false, auth: true, token: token, result: result});
