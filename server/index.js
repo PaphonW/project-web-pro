@@ -260,7 +260,7 @@ router.get("/getUser", adminAuthorize, (req, res) => {
 });
 
 // Change account's role (It will change to the opposite role(value).)
-// Testing login (1)
+// Testing changeRole (1)
 // method: PUT
 // URL: http://localhost:3030/changeRole
 // headers: {
@@ -273,7 +273,7 @@ router.get("/getUser", adminAuthorize, (req, res) => {
 //     "value": "user"
 // }
 
-// Testing login (2)
+// Testing changeRole (2)
 // method: PUT
 // URL: http://localhost:3030/changeRole
 // headers: {
