@@ -260,7 +260,7 @@ router.get("/getUser", adminAuthorize, (req, res) => {
 });
 
 // Change account's role (It will change to the opposite role(value).)
-// Testing login (1)
+// Testing changeRole (1)
 // method: PUT
 // URL: http://localhost:3030/changeRole
 // headers: {
@@ -273,7 +273,7 @@ router.get("/getUser", adminAuthorize, (req, res) => {
 //     "value": "user"
 // }
 
-// Testing login (2)
+// Testing changeRole (2)
 // method: PUT
 // URL: http://localhost:3030/changeRole
 // headers: {
@@ -568,6 +568,41 @@ router.delete("/removeProduct", adminAuthorize, (req, res) => {
         res.send({message: "Invalid"});
     }
 });
+
+// Added in phase 3
+
+// Retrieve user role by user ID
+// Testing getRole (1)
+// method: GET
+// URL: http://localhost:3030/getUser?id=1
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+
+// Testing getRole (2)
+// method: GET
+// URL: http://localhost:3030/getUser?id=7
+// headers: {
+//      'authorization': 'Bearer <token>',
+//      'role': 'admin'
+// }
+
+router.get("/getRole", adminAuthorize, (req, res) => {
+    dbConnect.query(
+        "SELECT role FROM login_info WHERE id = ?", [req.query.id],
+        (err, result) => {
+            if(err) res.send({err: err});
+
+            if(result.length > 0) {
+                res.send({err: false, role: result[0].role});
+            }
+            else {
+                res.send({err: false, noUser: true});
+            }
+        }
+    )
+})
 
 
 app.listen(3030, function() {
