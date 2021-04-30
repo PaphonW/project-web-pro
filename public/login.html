@@ -29,6 +29,9 @@
                   About
                 </a>
               </div>   
+              <div>
+                <a href="http://localhost:3000/" class="inline-block text-sm leading-none text-black border-white lg:hover:text-blue-400 mt-4 lg:mt-0 mr-4">Go to Admin site</a>
+              </div>
             </div>
           </nav>
         
@@ -54,7 +57,7 @@
 
             <div class="flex items-center justify-between py-4">
                 <div class="flex items-center">
-                    <button type="submit" class="w-max text-sm text-center px-6 py-2 rounded-md border hover:bg-gray-100" onclick="signIn()">Sign in</a>
+                    <button type="submit" class="w-max text-sm text-center px-6 py-2 rounded-md border hover:bg-gray-100" onclick="signIn()">Sign in</button>
                 </div>
 
                 <div class="flex items-center px-12 md:pr-12">
@@ -112,12 +115,7 @@
       document.cookie = `token=${res.token}`;
       document.cookie = `user=${JSON.stringify(res.result)}`;
       document.cookie = `country=${ipRes.country_name}`;
-      if(res.result[0].role === 'admin') {
-        window.location.href = 'dashboard.html';
-      }
-      else {
-        window.location.href = 'index.html';
-      }
+      window.location.href = 'index.html';
     }
     else {
       alert(res.message);
